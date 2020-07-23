@@ -3,7 +3,7 @@
 
 The script probes all AWS accounts that have already been onboarded into Dome9 and checks whether "serverless" feature is enabled or not.   
 Accounts that aren't enabled, are being proceccesed and enabled one by one.
-The script is using AWS credentials of the root account of "AWS organization" and onboards each sub account in the organization by assuming the default role "OrganizationAccountAccessRole" in each such subaccount. 
+The script is using AWS credentials of the root account of "AWS organization" and onboards each sub account in the organization by assuming the default role "OrganizationAccountAccessRole" in each such subaccount and running a CFT stack that creates the necassery roles and access policies for Dome9 to monitor "serverless" inside the account.
 
 
 # Requirements  
