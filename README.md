@@ -7,7 +7,7 @@ The script is using AWS credentials of the root account of "AWS organization" an
 
 
 # Requirements  
-Dome9 account Token  
+Dome9 V2 API Credentials  
 Cross-Account role in each sub account to be enabled with the following permissions:  
     IAM permissions to create CloudFormation Stacks, IAM Policies, and IAM Roles in target AWS accounts.  
 Python v3.8 or later  
@@ -24,31 +24,9 @@ python 3.8 with the following packages
 The following assumptions are made about the environment to be successful running the script.
 
 AWS Organizations Onboarding
-Any account in AWS Organizations has a cross-account access role in the child account with a consistent name (e.g. MyOrgsAdminRole) and with minimal IAM permissions. The parent account will assume the role in the child account. Not having a consistent role name will require running the script multiple times. Below is an example of the IAM policy required to be attached to the role in order to onboard the child account into Dome9 using this script:
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "D9FULLAUTOMATIONCHILDACCOUNT",
-            "Effect": "Allow",
-            "Action": [
-                "iam:ListPolicies",
-                "iam:GetRole*",
-                "iam:ListRole*",
-                "iam:PutRolePolicy",
-                "iam:CreateRole",
-                "iam:AttachRolePolicy",
-                "iam:CreatePolicy",
-                "cloudformation:List*",
-                "cloudformation:Create*",
-                "cloudformation:Describe*"
-            ],
-            "Resource": "*"
-        }
-    ]
-}
-Cross-account Onboarding
-The crossaccount mode requires the same IAM permissions in the target accounts as above.
+Any account in AWS Organizations has a cross-account access role in the child account with a consistent name (e.g. the default "OrganizationAccountAccessRole"). The parent account will assume the role in the child account. Not having a consistent role name will require running the script multiple times.  
+
+### Cross-account Onboarding
 Setup
 Step 1: Clone the repo and Install Dependencies
 Clone this repo into your local environment:
@@ -61,11 +39,6 @@ botocore
 requests
 # Install python dependencies
 pip3 install boto3 requests #Run as 'sudo' if you receive errors.
-Step 2: Upload Dome9 Platform CFTs to an S3 bucket
-Upload CloudFormation templates to an accessible S3 bucket. They can be found here. Optional: Use the public CFT URLs predefined in the d9_onboard_aws.conf file and skip the rest of this section.
-Edit d9_onboard_aws.conf.
-Set the S3 URLs for cft_s3_url_readonly and cft_s3_url_readwrite
-Save the file.
 Step 3: Setup Dome9 Environment Variables
 Create your Dome9 V2 API Credentials here.
 Set the environment variables.
