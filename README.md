@@ -2,8 +2,8 @@
 ### This solution will automatically enable the "serverless" feature across multiple onboarded Dome9 accounts
 
 
-Process Summary
-The following explains what this tool does in sequence at a high level:
+Process Summary  
+The following explains what this tool does in sequence at a high level:  
 
 The script probes all existing AWS accounts that have already been onboarded into D9 and checks if "serverless" feature is enabled 
 
