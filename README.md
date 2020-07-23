@@ -1,17 +1,14 @@
 # Dome9 Serverless onboarding Automation of AWS Accounts 
 ### This solution will automatically enable the "serverless" feature across multiple onboarded Dome9 accounts
 
-
-Process Summary  
 The following explains what this tool does in sequence at a high level:  
+The script probes all existing AWS accounts that have already been onboarded into D9 and checks if "serverless" feature is enabled   
+Accounts that are already enabled are skipped and every account that isn't already so is being processed and enabled  
 
-The script probes all existing AWS accounts that have already been onboarded into D9 and checks if "serverless" feature is enabled 
-
-Accounts that are already enabled are skipped and every account that isn't already so is being processed and enabled 
-
-# Requirements
-Dome9 account Token (where accounts will be "enabled")
-IAM permissions to create CloudFormation Stacks, IAM Policies, and IAM Roles in target AWS accounts.
+# Requirements  
+Dome9 account Token  
+Cross-Account role in each sub account to be enabled with the following permissions:  
+    IAM permissions to create CloudFormation Stacks, IAM Policies, and IAM Roles in target AWS accounts.
 Python v3.6 or later.
 
 # Install Python v3.6 and PIP on RHEL 8 
