@@ -5,8 +5,8 @@ import argparse
 import boto3
 import botocore
 
-apiKey = os.environ["DOMENINEAPIKEY"]
-apiSecret = os.environ["DOMENINEAPISECRET"]
+apiKey = os.environ["d9id"]
+apiSecret = os.environ["d9secret"]
 
 headers = {
   'Accept': 'application/json'
