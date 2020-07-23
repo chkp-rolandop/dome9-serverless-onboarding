@@ -8,24 +8,9 @@ Accounts that are already enabled are skipped and every account that isn't alrea
 # Requirements  
 Dome9 account Token  
 Cross-Account role in each sub account to be enabled with the following permissions:  
-    IAM permissions to create CloudFormation Stacks, IAM Policies, and IAM Roles in target AWS accounts.
-Python v3.6 or later.
-
-# Install Python v3.6 and PIP on RHEL 8 
- sudo yum update -y
- sudo yum install python36 python3-pip -y
- alias python=python3
- # Install Python v3.6 and PIP on Ubuntu 18.04
- sudo apt-get update -y
- sudo apt-get install python3 python3-pip -y
- alias python=python3
-Verify: python --version
-Git Command Line Tools
- # Intall Git on RHEL
- sudo yum install git -y
- # Install Git on Ubuntu
- sudo apt-get install git -y
-Verify: git --version
+    IAM permissions to create CloudFormation Stacks, IAM Policies, and IAM Roles in target AWS accounts.  
+Python v3.6 or later.  
+git  
 
 Assumptions
 The following assumptions are made about the environment to be successful running the script.
@@ -59,11 +44,12 @@ The crossaccount mode requires the same IAM permissions in the target accounts a
 Setup
 Step 1: Clone the repo and Install Dependencies
 Clone this repo into your local environment:
-git clone https://github.com/Dome9/onboarding-scripts.git
+git clone https://github.com/amit-schnitzer/dome9-serverless-onboarding.git
 Navigate to the script subdirectory:
-cd dome9-aws-automated-onboarding
+cd dome9-serverless-onboarding
 Using PIP, install the following python dependencies:
 boto3
+botocore
 requests
 # Install python dependencies
 pip3 install boto3 requests #Run as 'sudo' if you receive errors.
