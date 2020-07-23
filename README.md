@@ -9,14 +9,14 @@ Dome9 account Token
 Cross-Account role in each sub account to be enabled with the following permissions:  
     IAM permissions to create CloudFormation Stacks, IAM Policies, and IAM Roles in target AWS accounts.  
 Python v3.8 or later  
-git  2.17 or later
-aws cli version 2 or later 
+git  2.17 or later  
+aws cli version 2 or later  
 python 3.8 with the following packages  
   - pip  
-  - boto3
-  - botocore
-  - requests
-  - argparse
+  - boto3  
+  - botocore  
+  - requests  
+  - argparse  
 
 ### Assumptions
 The following assumptions are made about the environment to be successful running the script.
