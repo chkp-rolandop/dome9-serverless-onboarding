@@ -5,6 +5,7 @@ import argparse
 import boto3
 import botocore
 
+role_name = "OrganizationAccountAccessRole"
 apiKey = os.environ["d9id"]
 apiSecret = os.environ["d9secret"]
 
@@ -28,7 +29,7 @@ for account in accounts:
         while not flag:
             try:
                 assumed_role_object=sts_client.assume_role(
-                RoleArn="arn:aws:iam::%s:role/OrganizationAccountAccessRole"%(account["externalAccountNumber"]),
+                RoleArn="arn:aws:iam::%s:role/%s"%(account["externalAccountNumber"], role_name),
                 RoleSessionName="AssumeRoleSession" + account["externalAccountNumber"]
                 )
                 flag = True
