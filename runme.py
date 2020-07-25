@@ -5,6 +5,7 @@ import argparse
 import boto3
 import botocore
 
+# Change role_name variable here to reflect name of role in subaccounts 
 role_name = "OrganizationAccountAccessRole"
 apiKey = os.environ["d9id"]
 apiSecret = os.environ["d9secret"]
