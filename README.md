@@ -9,14 +9,15 @@ The script is using AWS credentials of the root account of "AWS organization" an
 # Requirements  
 Dome9 V2 API Credentials  
 Cross-Account role in each sub account with proper permissions (onboarding-policy.json file includes minimum permissions policy)  
+git  2.17 or later  
+aws cli version 2 or later
 Python v3.8 or later with the following  
   - pip  
   - boto3  
   - botocore  
   - requests  
   - argparse  
-git  2.17 or later  
-aws cli version 2 or later  
+  
 
 ### Assumptions
 The following assumptions are made about the environment to be successful running the script.  
@@ -45,37 +46,37 @@ Attach the following IAM Policy to the service-linked role or IAM user that you 
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "VisualEditor0",
+            "Sid": "onboarding1",
             "Effect": "Allow",
             "Action": [
-                "iam:ListPolicies",
-                "lambda:CreateFunction",
-                "iam:ListRole*",
-                "cloudformation:Create*",
-                "logs:DescribeLogGroups",
-                "lambda:GetLayerVersion",
-                "lambda:GetFunction",
-                "iam:CreateRole",
-                "s3:CreateBucket",
-                "iam:AttachRolePolicy",
-                "lambda:GetFunctionConfiguration",
-                "iam:PutRolePolicy",
-                "logs:CreateLogGroup",
-                "cloudformation:Describe*",
-                "iam:CreatePolicy",
-                "s3:PutEncryptionConfiguration",
-                "s3:GetObject",
+                "iam:GetRole*",
                 "iam:PassRole",
+                "iam:ListRole*",
+                "iam:CreateRole",
+                "iam:ListPolicies",
+                "iam:CreatePolicy",
+                "iam:PutRolePolicy",
                 "iam:DeleteRolePolicy",
-                "cloudformation:List*",
+                "iam:AttachRolePolicy",
+                "logs:CreateLogGroup",
+                "logs:DescribeLogGroups",
                 "logs:PutRetentionPolicy",
+                "lambda:GetFunction",
+                "lambda:CreateFunction",
+                "lambda:GetLayerVersion",
+                "lambda:GetFunctionConfiguration",
+                "s3:GetObject",
                 "s3:DeleteBucket",
-                "iam:GetRole*"
+                "s3:CreateBucket",
+                "s3:PutEncryptionConfiguration",
+                "cloudformation:List*",
+                "cloudformation:Create*",
+                "cloudformation:Describe*"
             ],
             "Resource": "*"
         },
         {
-            "Sid": "VisualEditor1",
+            "Sid": "onboarding2",
             "Effect": "Allow",
             "Action": "sns:Publish",
             "Resource": "arn:aws:sns:*:*:*"
