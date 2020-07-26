@@ -19,9 +19,9 @@ git  2.17 or later
 aws cli version 2 or later  
 
 ### Assumptions
-The following assumptions are made about the environment to be successful running the script.
-AWS accounts have been already onboarded into Dome9 [Onboarding-Scripts](https://github.com/dome9/onboarding-scripts)  
-Any account in AWS Organizations has a cross-account access role in the child account with a consistent name (e.g. the default "OrganizationAccountAccessRole"). The parent account will assume the role in the child account. Not having a consistent role name will require running the script multiple times.  
+The following assumptions are made about the environment to be successful running the script.  
+AWS accounts have been already onboarded into Dome9 - either manually or using [Onboarding-Scripts](https://github.com/dome9/onboarding-scripts)  
+Any sub account in AWS Organizations has a cross-account access role in the child account with a consistent name (e.g. the default "OrganizationAccountAccessRole"). The parent account will assume the role in the child account. Not having a consistent role name will require running the script multiple times.  
 
 ### Setup  
 #### Step 1: Clone the repo   
@@ -39,21 +39,51 @@ Add your token to environment variable
   export AWS_ACCESS_KEY_ID=AK00012300012300TEST  
   export AWS_SECRET_ACCESS_KEY=Nnnnn12345nnNnn67890nnNnn12345nnNnn67890  
 Attach the following IAM Policy to the service-linked role or IAM user that you created.
-{
+
+'''
+
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "D9FULLAUTOMATIONPARENT",
+            "Sid": "VisualEditor0",
             "Effect": "Allow",
             "Action": [
-                "sts:*",
-                "organizations:Describe*",
-                "organizations:List*"
+                "iam:ListPolicies",
+                "lambda:CreateFunction",
+                "iam:ListRole*",
+                "cloudformation:Create*",
+                "logs:DescribeLogGroups",
+                "lambda:GetLayerVersion",
+                "lambda:GetFunction",
+                "iam:CreateRole",
+                "s3:CreateBucket",
+                "iam:AttachRolePolicy",
+                "lambda:GetFunctionConfiguration",
+                "iam:PutRolePolicy",
+                "logs:CreateLogGroup",
+                "cloudformation:Describe*",
+                "iam:CreatePolicy",
+                "s3:PutEncryptionConfiguration",
+                "s3:GetObject",
+                "iam:PassRole",
+                "iam:DeleteRolePolicy",
+                "cloudformation:List*",
+                "logs:PutRetentionPolicy",
+                "s3:DeleteBucket",
+                "iam:GetRole*"
             ],
             "Resource": "*"
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": "sns:Publish",
+            "Resource": "arn:aws:sns:*:*:*"
         }
     ]
 }
+'''
+
 Note: If you would like the parent AWS account to be onboarded in Dome9 by the script you will need to also attach the same IAM policy as the child accounts, as seen in the Assumptions section above.
 
 Operation
