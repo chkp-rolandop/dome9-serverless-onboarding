@@ -8,64 +8,18 @@ The script is using AWS credentials of the root account of "AWS organization" an
 
 # Requirements  
 Dome9 V2 API Credentials  
-Cross-Account role in each sub account to be enabled with the following permissions policy 
-******************************************************************************************************************************
-{  
-    "Version": "2012-10-17",  
-    "Statement": [  
-        {  
-            "Sid": "onboarding1",  
-            "Effect": "Allow",  
-            "Action": [  
-                "iam:GetRole*",  
-                "iam:PassRole",  
-                "iam:ListRole*",  
-                "iam:CreateRole",  
-                "iam:CreatePolicy",  
-                "iam:ListPolicies",  
-                "iam:PutRolePolicy",  
-                "iam:AttachRolePolicy",  
-                "iam:DeleteRolePolicy",  
-                "lambda:GetFunction",  
-                "lambda:CreateFunction",  
-                "lambda:GetLayerVersion",  
-                "lambda:GetFunctionConfiguration",  
-                "logs:CreateLogGroup",  
-                "logs:DescribeLogGroups",  
-                "logs:PutRetentionPolicy",  
-                "cloudformation:List*",  
-                "cloudformation:Create*",  
-                "cloudformation:Describe*",  
-                "s3:GetObject",  
-                "s3:CreateBucket",  
-                "s3:DeleteBucket",  
-                "s3:PutEncryptionConfiguration"  
-            ],  
-            "Resource": "*"  
-        },  
-        {  
-            "Sid": "onboarding2",  
-            "Effect": "Allow",  
-            "Action": "sns:Publish",  
-            "Resource": "arn:aws:sns:*:*:*"  
-        }  
-    ]  
-}  
-**************************************************************************************************************
-Python v3.8 or later  
-git  2.17 or later  
-aws cli version 2 or later  
-python 3.8 with the following packages  
+Cross-Account role in each sub account with proper permissions (onboarding-policy.json file includes minimum permissions policy) 
+Python v3.8 or later with the following 
   - pip  
   - boto3  
   - botocore  
   - requests  
-  - argparse  
+  - argparse 
+git  2.17 or later  
+aws cli version 2 or later  
 
 ### Assumptions
 The following assumptions are made about the environment to be successful running the script.
-
-AWS Organizations Onboarding
 Any account in AWS Organizations has a cross-account access role in the child account with a consistent name (e.g. the default "OrganizationAccountAccessRole"). The parent account will assume the role in the child account. Not having a consistent role name will require running the script multiple times.  
 
 ### Cross-account Onboarding
