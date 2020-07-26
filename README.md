@@ -29,7 +29,8 @@ git clone https://github.com/amit-schnitzer/dome9-serverless-onboarding.git
 Navigate to the script subdirectory:  
 cd dome9-serverless-onboarding  
 
-# Dome9 V2 API Credentials Example  
+### Dome9 V2 API Credentials Example  
+Generate a Dome9 API token [here](https://secure.dome9.com/v2/settings/credentials)
 export d9id=12345678-1234-1234-1234-123456789012
 export d9secret=abcdefghijklmnopqrstuvwx
 Step 4: Setup AWS Credentials for Parent AWS Account
