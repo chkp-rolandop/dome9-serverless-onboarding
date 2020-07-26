@@ -23,20 +23,18 @@ The following assumptions are made about the environment to be successful runnin
 Any account in AWS Organizations has a cross-account access role in the child account with a consistent name (e.g. the default "OrganizationAccountAccessRole"). The parent account will assume the role in the child account. Not having a consistent role name will require running the script multiple times.  
 
 ### Setup  
-Step 1: Clone the repo and Install Dependencies  
+#### Step 1: Clone the repo   
 Clone this repo into your local environment:  
 git clone https://github.com/amit-schnitzer/dome9-serverless-onboarding.git  
 Navigate to the script subdirectory:  
 cd dome9-serverless-onboarding  
 
-### Dome9 V2 API Credentials Example  
-Generate a Dome9 API token [here](https://secure.dome9.com/v2/settings/credentials)
-export d9id=12345678-1234-1234-1234-123456789012
-export d9secret=abcdefghijklmnopqrstuvwx
-Step 4: Setup AWS Credentials for Parent AWS Account
-Get IAM Credentials
-Option 1: Run the script on an AWS resource which uses a service-linked role. The script will dynamically find the credentials without the need to specify environment variables.
-Option 2: Create IAM User access keys and set the environment variables.
+#### Step 2: Create and export Dome9 API Credentials  
+Generate a Dome9 API token [here](https://secure.dome9.com/v2/settings/credentials)  
+Add your token to environment variable  
+    export d9id=12345678-1234-1234-1234-123456789012
+    export d9secret=abcdefghijklmnopqrstuvwx
+Step 2: Create IAM User access keys and set the environment variables.
   # AWS Credentials Example
   export AWS_ACCESS_KEY_ID=AK00012300012300TEST
   export AWS_SECRET_ACCESS_KEY=Nnnnn12345nnNnn67890nnNnn12345nnNnn67890
