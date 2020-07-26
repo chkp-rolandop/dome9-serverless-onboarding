@@ -1,0 +1,41 @@
+
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "iam:ListPolicies",
+                "lambda:CreateFunction",
+                "iam:ListRole*",
+                "cloudformation:Create*",
+                "logs:DescribeLogGroups",
+                "lambda:GetLayerVersion",
+                "lambda:GetFunction",
+                "iam:CreateRole",
+                "s3:CreateBucket",
+                "iam:AttachRolePolicy",
+                "lambda:GetFunctionConfiguration",
+                "iam:PutRolePolicy",
+                "logs:CreateLogGroup",
+                "cloudformation:Describe*",
+                "iam:CreatePolicy",
+                "s3:PutEncryptionConfiguration",
+                "s3:GetObject",
+                "iam:PassRole",
+                "iam:DeleteRolePolicy",
+                "cloudformation:List*",
+                "logs:PutRetentionPolicy",
+                "s3:DeleteBucket",
+                "iam:GetRole*"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": "sns:Publish",
+            "Resource": "arn:aws:sns:*:*:*"
+        }
+    ]
+}
