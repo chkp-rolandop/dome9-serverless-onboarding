@@ -8,13 +8,13 @@ The script is using AWS credentials of the root account of "AWS organization" an
 
 # Requirements  
 Dome9 V2 API Credentials  
-Cross-Account role in each sub account with proper permissions (onboarding-policy.json file includes minimum permissions policy) 
-Python v3.8 or later with the following 
+Cross-Account role in each sub account with proper permissions (onboarding-policy.json file includes minimum permissions policy)  
+Python v3.8 or later with the following  
   - pip  
   - boto3  
   - botocore  
   - requests  
-  - argparse 
+  - argparse  
 git  2.17 or later  
 aws cli version 2 or later  
 
@@ -22,23 +22,14 @@ aws cli version 2 or later
 The following assumptions are made about the environment to be successful running the script.
 Any account in AWS Organizations has a cross-account access role in the child account with a consistent name (e.g. the default "OrganizationAccountAccessRole"). The parent account will assume the role in the child account. Not having a consistent role name will require running the script multiple times.  
 
-### Cross-account Onboarding
-Setup
-Step 1: Clone the repo and Install Dependencies
-Clone this repo into your local environment:
-git clone https://github.com/amit-schnitzer/dome9-serverless-onboarding.git
-Navigate to the script subdirectory:
-cd dome9-serverless-onboarding
-Using PIP, install the following python dependencies:
-boto3
-botocore
-requests
-# Install python dependencies
-pip3 install boto3 requests #Run as 'sudo' if you receive errors.
-Step 3: Setup Dome9 Environment Variables
-Create your Dome9 V2 API Credentials here.
-Set the environment variables.
-# Dome9 V2 API Credentials Example
+### Setup  
+Step 1: Clone the repo and Install Dependencies  
+Clone this repo into your local environment:  
+git clone https://github.com/amit-schnitzer/dome9-serverless-onboarding.git  
+Navigate to the script subdirectory:  
+cd dome9-serverless-onboarding  
+
+# Dome9 V2 API Credentials Example  
 export d9id=12345678-1234-1234-1234-123456789012
 export d9secret=abcdefghijklmnopqrstuvwx
 Step 4: Setup AWS Credentials for Parent AWS Account
