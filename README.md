@@ -10,47 +10,47 @@ The script is using AWS credentials of the root account of "AWS organization" an
 Dome9 V2 API Credentials  
 Cross-Account role in each sub account to be enabled with the following permissions policy 
 ******************************************************************************************************************************
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "onboarding1",
-            "Effect": "Allow",
-            "Action": [
-                "iam:GetRole*",
-                "iam:PassRole",
-                "iam:ListRole*",
-                "iam:CreateRole",
-                "iam:CreatePolicy",
-                "iam:ListPolicies",
-                "iam:PutRolePolicy",
-                "iam:AttachRolePolicy",
-                "iam:DeleteRolePolicy",
-                "lambda:GetFunction",
-                "lambda:CreateFunction",
-                "lambda:GetLayerVersion",
-                "lambda:GetFunctionConfiguration",
-                "logs:CreateLogGroup",
-                "logs:DescribeLogGroups",
-                "logs:PutRetentionPolicy",
-                "cloudformation:List*",
-                "cloudformation:Create*",
-                "cloudformation:Describe*",
-                "s3:GetObject",
-                "s3:CreateBucket",
-                "s3:DeleteBucket",
-                "s3:PutEncryptionConfiguration"
-            ],
-            "Resource": "*"
-        },
-        {
-            "Sid": "onboarding2",
-            "Effect": "Allow",
-            "Action": "sns:Publish",
-            "Resource": "arn:aws:sns:*:*:*"
-        }
-    ]
-}
+{  
+    "Version": "2012-10-17",  
+    "Statement": [  
+        {  
+            "Sid": "onboarding1",  
+            "Effect": "Allow",  
+            "Action": [  
+                "iam:GetRole*",  
+                "iam:PassRole",  
+                "iam:ListRole*",  
+                "iam:CreateRole",  
+                "iam:CreatePolicy",  
+                "iam:ListPolicies",  
+                "iam:PutRolePolicy",  
+                "iam:AttachRolePolicy",  
+                "iam:DeleteRolePolicy",  
+                "lambda:GetFunction",  
+                "lambda:CreateFunction",  
+                "lambda:GetLayerVersion",  
+                "lambda:GetFunctionConfiguration",  
+                "logs:CreateLogGroup",  
+                "logs:DescribeLogGroups",  
+                "logs:PutRetentionPolicy",  
+                "cloudformation:List*",  
+                "cloudformation:Create*",  
+                "cloudformation:Describe*",  
+                "s3:GetObject",  
+                "s3:CreateBucket",  
+                "s3:DeleteBucket",  
+                "s3:PutEncryptionConfiguration"  
+            ],  
+            "Resource": "*"  
+        },  
+        {  
+            "Sid": "onboarding2",  
+            "Effect": "Allow",  
+            "Action": "sns:Publish",  
+            "Resource": "arn:aws:sns:*:*:*"  
+        }  
+    ]  
+}  
 **************************************************************************************************************
 Python v3.8 or later  
 git  2.17 or later  
