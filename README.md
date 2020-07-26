@@ -87,3 +87,6 @@ Attach the following IAM Policy to the service-linked role or IAM user that you 
 
 ### Operation 
 In order to run the script simply type "python3 runme.py" in the working directory
+
+
+Please log any issues here!
