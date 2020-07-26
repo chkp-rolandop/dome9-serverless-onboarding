@@ -20,6 +20,7 @@ aws cli version 2 or later
 
 ### Assumptions
 The following assumptions are made about the environment to be successful running the script.
+AWS accounts have been already onboarded into Dome9 [Onboarding-Scripts](https://github.com/dome9/onboarding-scripts)  
 Any account in AWS Organizations has a cross-account access role in the child account with a consistent name (e.g. the default "OrganizationAccountAccessRole"). The parent account will assume the role in the child account. Not having a consistent role name will require running the script multiple times.  
 
 ### Setup  
@@ -34,10 +35,9 @@ Generate a Dome9 API token [here](https://secure.dome9.com/v2/settings/credentia
 Add your token to environment variable  
     export d9id=12345678-1234-1234-1234-123456789012
     export d9secret=abcdefghijklmnopqrstuvwx
-Step 2: Create IAM User access keys and set the environment variables.
-  # AWS Credentials Example
-  export AWS_ACCESS_KEY_ID=AK00012300012300TEST
-  export AWS_SECRET_ACCESS_KEY=Nnnnn12345nnNnn67890nnNnn12345nnNnn67890
+#### Step 3: AWS Credentials  
+  export AWS_ACCESS_KEY_ID=AK00012300012300TEST  
+  export AWS_SECRET_ACCESS_KEY=Nnnnn12345nnNnn67890nnNnn12345nnNnn67890  
 Attach the following IAM Policy to the service-linked role or IAM user that you created.
 {
     "Version": "2012-10-17",
