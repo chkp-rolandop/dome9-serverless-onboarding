@@ -3,13 +3,55 @@
 
 The script probes all AWS accounts that have already been onboarded into Dome9 and checks whether "serverless" feature is enabled or not.   
 Accounts that aren't enabled, are being proceccesed and enabled one by one.
-The script is using AWS credentials of the root account of "AWS organization" and onboards each sub account in the organization by assuming the default role "OrganizationAccountAccessRole" in each such subaccount and running a CFT stack that creates the necassery roles and access policies for Dome9 to monitor "serverless" inside the account.
+The script is using AWS credentials of the root account of "AWS organization" and onboards each sub account in the organization by assuming the default role "OrganizationAccountAccessRole" in each such subaccount and by running a CFT stack that creates the necassery roles and access policies for Dome9 to monitor "serverless" inside the account. The script was built to prompt for AWS credentials (i.e. Access Key and Secret) if it fails to do so with the pre-loaded ones. This is also adequate for situations where you are oboarding multiple accounts with different Root acount credentials.
 
 
 # Requirements  
 Dome9 V2 API Credentials  
-Cross-Account role in each sub account to be enabled with the following permissions:  
-    IAM permissions to create CloudFormation Stacks, IAM Policies, and IAM Roles in target AWS accounts.  
+Cross-Account role in each sub account to be enabled with the following permissions policy 
+******************************************************************************************************************************
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "onboarding1",
+            "Effect": "Allow",
+            "Action": [
+                "iam:GetRole*",
+                "iam:PassRole",
+                "iam:ListRole*",
+                "iam:CreateRole",
+                "iam:CreatePolicy",
+                "iam:ListPolicies",
+                "iam:PutRolePolicy",
+                "iam:AttachRolePolicy",
+                "iam:DeleteRolePolicy",
+                "lambda:GetFunction",
+                "lambda:CreateFunction",
+                "lambda:GetLayerVersion",
+                "lambda:GetFunctionConfiguration",
+                "logs:CreateLogGroup",
+                "logs:DescribeLogGroups",
+                "logs:PutRetentionPolicy",
+                "cloudformation:List*",
+                "cloudformation:Create*",
+                "cloudformation:Describe*",
+                "s3:GetObject",
+                "s3:CreateBucket",
+                "s3:DeleteBucket",
+                "s3:PutEncryptionConfiguration"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "onboarding2",
+            "Effect": "Allow",
+            "Action": "sns:Publish",
+            "Resource": "arn:aws:sns:*:*:*"
+        }
+    ]
+}
+**************************************************************************************************************
 Python v3.8 or later  
 git  2.17 or later  
 aws cli version 2 or later  
