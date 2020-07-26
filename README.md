@@ -6,7 +6,7 @@ Accounts that aren't enabled, are being proceccesed and enabled one by one.
 The script is using AWS credentials of the root account of "AWS organization" and onboards each sub account in the organization by assuming the default role "OrganizationAccountAccessRole" in each such subaccount and by running a CFT stack that creates the necassery roles and access policies for Dome9 to monitor "serverless" inside the account. The script was built to prompt for AWS credentials (i.e. Access Key and Secret) if it fails to do so with the pre-loaded ones. This is also adequate for situations where you are oboarding multiple accounts with different Root acount credentials.
 
 
-# Requirements  
+### Requirements  
 Dome9 V2 API Credentials  
 Cross-Account role in each sub account with proper permissions (onboarding-policy.json file includes minimum permissions policy)  
 git  2.17 or later  
@@ -85,3 +85,5 @@ Attach the following IAM Policy to the service-linked role or IAM user that you 
 }
 '''
 
+### Operation 
+In order to run the script simply type "python3 runme.py in the working directory
