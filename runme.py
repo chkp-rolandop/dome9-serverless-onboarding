@@ -13,15 +13,16 @@ apiSecret = os.environ["d9secret"]
 headers = {
   'Accept': 'application/json'
 }
-r = requests.get('https://api.dome9.com/v2/CloudAccounts', params={
+r = requests.get('https://api.dome9.com/v2/cloudaccounts/stats-V2', params={
 
 }, headers = headers, auth=(apiKey, apiSecret))
-accounts = r.json()
+accounts = r.json()["awsCloudAccounts"]
+print(accounts)
 keys = []
 key = ""
 secret = ""
 for account in accounts:
-    if account["serverlessEnabled"] == False:
+    if account["cloudLambdaFunctionProtected"] == False:
         print(account)
         sts_client = boto3.client('sts')
         flag = False
