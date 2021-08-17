@@ -9,20 +9,31 @@ import botocore
 role_name = "OrganizationAccountAccessRole"
 apiKey = os.environ["d9id"]
 apiSecret = os.environ["d9secret"]
+onboard_accounts = []
+
+base_url = 'https://api.dome9.com/v2/'
+cloudaccounts_stats_V2 = 'cloudaccounts/stats-V2'
 
 headers = {
   'Accept': 'application/json'
 }
-r = requests.get('https://api.dome9.com/v2/cloudaccounts/stats-V2', params={
+r = requests.get(''.join([base_url,cloudaccounts_stats_V2]), params={
 
 }, headers = headers, auth=(apiKey, apiSecret))
 accounts = r.json()["awsCloudAccounts"]
-print(accounts)
+
+for account in accounts:
+    s = requests.get(''.join([base_url,'serverless/aws/accounts/states/',account["cloudAccountId"]]),params={
+        }, headers=headers, auth=(apiKey, apiSecret))
+    account_state = s.json()["state"]
+    if  account_state == "unknown":
+        onboard_accounts.append(account)
+
 keys = []
 key = ""
 secret = ""
-for account in accounts:
-    if account["cloudLambdaFunctionProtected"] == False:
+for account in onboard_accounts:
+    if account:
         print(account)
         sts_client = boto3.client('sts')
         flag = False
